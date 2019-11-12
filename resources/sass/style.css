@@ -1,0 +1,237 @@
+#all {
+	width: 85%;
+	position: relative;
+	margin: 0 auto;
+    background-size: 100%;
+    border: 1px solid black;
+}
+
+div {
+    width: 100%;
+    /*border: 1px solid black;*/
+}
+
+#header {
+    height: 60px;
+    border: 1px solid black;
+}
+
+#header p {
+    font-size: 30px;
+    /*border: 1px solid red;*/
+    display: inline-flex;
+    margin-top: 11px;
+    margin-left: 3%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+#menu {
+    height: 35px;
+    border: 1px solid black;
+}
+
+#menu>*{
+    float: right;
+    margin-top: 7px;
+    margin-left: 12px;
+}
+
+#menu>input {
+    float: left;
+}
+
+#menu p {
+    display: inline-flex;
+    margin-top: 15px;
+    margin-right: 12px;
+}
+
+#content {
+    background-color: rgb(224, 224, 224);
+    border: 1px solid blue;
+    float: left;
+}
+
+#imagen {
+    height: 70%;
+    margin-top: 6px;
+    margin-right: 12px;
+}
+
+#movies {
+    float: left;
+    border: 1px solid blue;
+}
+
+.movie {
+    float: left;
+    /*border: 1px solid red;*/
+    width: 250px;
+    margin-top: 20px;
+    margin-left: 55px;
+    margin-bottom: 50px;
+}
+
+.movie>* {
+    font-family: 'Bree Serif', serif;
+    
+}
+
+.editButton {
+    text-decoration: none;
+    padding: 10px;
+    margin-left: 35px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    /*border: 2px solid #0016b0;*/
+}
+
+.deleteButton {
+    text-decoration: none;
+    padding: 10px;
+    margin-left: 20px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #fd5353;
+    border-radius: 6px;
+    /*border: 2px solid #990202;*/
+}
+
+.viewMovie {
+    text-decoration: none;
+    padding: 10px;
+    margin-top: 23px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #2be02b;
+    border-radius: 6px;
+    /*border: 2px solid #029902;*/
+}
+
+#movieInfo {
+    float: left;
+    margin-left: 1%;
+    margin-top: 25px;
+    width: 40%;
+    /*border: 1px solid red;*/
+}
+
+p.indentp {
+    padding-left: 15px;
+    line-height: 0px;
+}
+
+input[class="indentp"]{
+    padding-left: 15px;
+    margin-top: -13px;
+    margin-bottom: -10px;
+}
+
+.tittle {
+    padding-left: 15px;
+    margin-top: -16px;
+    margin-bottom: -15px;
+}
+
+/*-----------------------EDIT MOVIE----------------------*/
+
+.campoMovie{
+    float: left;
+    width: 24%;
+    /*border: 1px solid red;*/
+}
+
+.movieEditButton {
+    float: left;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 400px;
+    font-size: 13px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    margin-top: 15px;
+    /*border: 2px solid #0016b0;*/
+}
+
+.movieDeleteButton {
+    text-decoration: none;
+    padding: 10px;
+    margin-left: 80px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #fd5353;
+    border-radius: 6px;
+    /*border: 2px solid #0016b0;*/
+}
+
+#addActorDirector {
+    float: left;
+    margin-top: 25px;
+    /*border: 1px solid green;*/
+    width: 35%;
+    background-color: white;
+    font-size: 17px;
+}
+
+.unselectionable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.closeIcon {
+    width: 15px;
+    height: 15px;
+    float: right;
+    position: inherit;
+    margin-right: 4px;
+    margin-top: -13px;
+}
+
+/*-----------------FORM LOGIN--------------------*/
+
+#formularios {
+    float: left;
+}
+
+input {
+    padding: 3px;
+    /*border: 1px solid #ccc;*/
+    border-radius: 4px;
+    
+}
+
+label {
+    padding: 3px 3px 3px 0;
+    display: inline-block;
+}
+
+form {
+    float: left;
+    width: 30%;
+    text-align: center;
+    margin-top: 1%;
+    margin-left: 2%;
+}
+
+.etiqueta {
+    float: left;
+    width: 85px;
+}
+
+.campo {
+    margin-left: 8%;
+    
+}

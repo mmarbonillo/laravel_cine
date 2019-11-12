@@ -1,0 +1,12 @@
+<h3>Cast</h3>
+    <p class='indentp'>
+    foreach($actors as $actor):
+        $actor->name &nbsp&nbsp
+    endforeach
+    </p>
+    <h3>Directors</h3>
+    <p class='indentp'>
+    foreach($directors as $director):
+        $director->name &nbsp&nbsp
+    endforeach
+    </p>
