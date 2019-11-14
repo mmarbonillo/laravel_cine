@@ -24,7 +24,7 @@ div {
     margin-left: 3%;
 }
 
-a {
+a.nodecoration {
     text-decoration: none;
     color: black;
 }
@@ -71,7 +71,7 @@ a {
     float: left;
     border: 1px solid red;
     width: 250px;
-    margin-top: 20px;
+    margin-top: 35px;
     margin-left: 55px;
     margin-bottom: 50px;
 }
@@ -236,4 +236,93 @@ form {
 .campo {
     margin-left: 8%;
     
+}
+
+.addGenre {
+    float: left;
+}
+
+/* VENTANA MODAL */
+.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: auto;
+}
+.modalDialog > div#div {
+    width: 300px;
+    height: 600;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #fff;
+	background: -moz-linear-gradient(#fff, #999);
+	background: -webkit-linear-gradient(#fff, #999);
+	background: -o-linear-gradient(#fff, #999);
+  -webkit-transition: opacity 400ms ease-in;
+-moz-transition: opacity 400ms ease-in;
+transition: opacity 400ms ease-in;
+}
+.close {
+	background: #606061;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+.close:hover { background: #00d9ff; }
+
+#addButton {
+    float: right;
+}
+
+#genresSelect {
+    float: left;
+    width: 150px;
+    height: 160px;
+}
+
+#store {
+    float: left;
+    width: 100%;
+    /*border: 1px solid blue;*/
+}
+
+#store > label{
+    float: left;
+    margin-right: 20px;
+}
+
+#store > input {
+    float: left;
+}
+
+select#genresSelect {
+    float: left;
+}
+
+input[name='delete']{
+    float: left;
+    clear: both;
+    margin-top: 15px;
 }

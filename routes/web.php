@@ -11,6 +11,7 @@ Route::get('user/create', 'UserController@create')->name('user.create');
 Route::get('user/{id}/delete', 'UserController@destroy')->name('user.destroy');
 Route::put('user/editar', 'UserController@update')->name('user.update');
 Route::get('user/{id}/editar', 'UserController@edit')->name('user.edit');
+Route::get('user/{id}/logout', 'UserController@logout')->name('user.logout');
 
 //MOVIES
 //Route::get('movies', 'MovieController@index')->name('movie.index'); //no funciona por algún motivo
@@ -22,7 +23,21 @@ Route::get('movies/{id}/edit', 'MovieController@edit')->name('movie.edit');
 Route::put('movies/{id}/update', 'MovieController@update')->name('movie.update');
 Route::get('movies/{id}/delete', 'MovieController@destroy')->name('movie.destroy');
 
-Genre::routes();
+Route::post('genre/delete', 'GenreController@destroy')->name('genre.delete');
+Route::resource('genre', 'GenreController', [
+    'names' => [
+        'index' => 'genre.index',
+        'store' => 'genre.store',
+        'create' => 'genre.create',
+        'show' => 'genre.show',
+        //'destroy' => 'genre.destroy',
+        'update' => 'genre.update',
+        'edit' => 'genre.edit',
+    ]]);
+
+//LOGIN
+
+
 
 Auth::routes();
 

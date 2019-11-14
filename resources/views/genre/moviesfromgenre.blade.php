@@ -9,6 +9,7 @@
 @if(isset($mensaje))
     {{$mensaje}}
 @endif
+
 @foreach($moviesList as $movie)
     <div class='movie'>
         @auth

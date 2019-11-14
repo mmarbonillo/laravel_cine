@@ -6,12 +6,15 @@ use Illuminate\Support\Facades\File;
 
 use Illuminate\Http\Request;
 use App\Movie;
+use Auth;
 
 class MovieController extends Controller {
     
     public function index() {
         $moviesList = Movie::all();
+        $user = Auth::user();
         $data["moviesList"] = $moviesList;
+        $data["user"] = $user;
         return view('movie/index', $data);
     }
 
@@ -19,7 +22,10 @@ class MovieController extends Controller {
         $data['movie'] = Movie::find($r->id);
         $data["displayp"] = "block";
         $data["displayi"] = "none";
-        return view("movie/open")->with($data);
+        $data["user"] = Auth::user();
+        $genres = Movie::find($r->id)->genres;
+        $data['genres'] = $genres;
+        return view("movie/open",)->with($data);
     }
     
     public function create() {
@@ -49,6 +55,9 @@ class MovieController extends Controller {
         $data["displayp"] = "none";
         $data["displayi"] = "block";
         //echo($data["user"]->name);
+        $genres = Movie::find($r->id)->genres;
+        $data['genres'] = $genres;
+        $data['user'] = Auth::user();
         return view('movie/open')->with($data);
         //echo($r->id); //da el id *.*
     }

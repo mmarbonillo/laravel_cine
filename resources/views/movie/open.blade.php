@@ -7,13 +7,12 @@
 @section('scripts')
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <script type="text/javascript">
-        $().ready(function(){
-            $("img.yellow").on({
-                mouseenter: (x) => {
-                    $(x).attr('src', "{{ url('images/stars/estrellablanca.png') }}");
-                }
-            });
-        });
+        function changeStars(star){
+            if(star.class == 'yellow')
+                star.src = '{{ url('images/stars/estrellablanca.png') }}';
+            else
+                star.src = '{{ url('images/stars/estrllaamarilla.png') }}';
+        }
     </script>
 @endsection
 
@@ -34,7 +33,7 @@
 <div id='movieInfo'>
 
     @for ($i = 0; $i < $movie->rating; $i++)
-        <img class='rating yellow' src='{{ url('images/stars/estrllaamarilla.png') }}' alt='rating' height='20px' width='20px' >
+        <img class='rating yellow' src='{{ url('images/stars/estrllaamarilla.png') }}' alt='rating' height='20px' width='20px' onmouseover="changeStars(this)">
     @endfor
     @for ($i = $movie->rating; $i < 10; $i++)
         <img class='rating white' src='{{ url('images/stars/estrellablanca.png') }}' alt='rating' height='20px' width='20px'>
@@ -55,15 +54,20 @@
     <p class='indentp' style='display:{{$displayp ?? 'none'}}'>{{ $movie->duration }}</p>
     <input type='text' class='indentp' name='duration' style='display:{{$displayi ?? 'none'}}' value='{{$movie->duration}}'>
     
-    <input type='button' name='viewMovie' class='viewMovie' value='VIEW' style='display:{{$displayp ?? 'none'}}'>
+    @guest
+        <input type='button' name='viewMovie' class='viewMovie' value='VIEW' style='display:{{$displayp ?? 'none'}}'>
+    @endguest
 
     <br style='display:{{$displayi ?? 'none'}}'>
     <input type="submit" name="save" value="Save Changes" style='display:{{$displayi ?? 'none'}}'>
 
     @if ($displayi == "block")
-        
         </form>
     @endif
+    <h3>Genres</h3>
+    @foreach ($genres as $genre)
+        <a href="{{ route('genre.show', $genre->genre) }}">{{ $genre->genre }}</a>
+    @endforeach
 
 </div>
 

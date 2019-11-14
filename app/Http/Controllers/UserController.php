@@ -4,13 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\myUser;
+use Auth;
 
 class UserController extends Controller {
     
     public function index() {
-        $usersList = myUser::all();
-        $data["usersList"] = $usersList;
-        return view('user/adminPanel', $data);
+        $user = Auth::user();
+        if($user->type == 0){
+            $usersList = myUser::all();
+            $data["usersList"] = $usersList;
+            return view('user/adminPanel', $data);
+        }else if($user->type == 1){
+            $data["user"] = $user;
+            return view('user/adminPanel', $data);
+        }else {
+            return redirect()->route('movie.index');
+        }
     }
 
     public function show() {
@@ -65,6 +74,11 @@ class UserController extends Controller {
         $user = myUser::find($r->id);
         $user->delete();
         return redirect()->route("user.index");
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('movie.index');
     }
 
 }
