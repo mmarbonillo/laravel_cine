@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Movie;
 use Auth;
+use DB;
 
 class MovieController extends Controller {
     
@@ -58,6 +59,14 @@ class MovieController extends Controller {
         $genres = Movie::find($r->id)->genres;
         $data['genres'] = $genres;
         $data['user'] = Auth::user();
+        $ids = [];
+        //dd($genres->toArray());
+        foreach($genres->toArray() as $genre):
+            $ids[] = $genre["id"];
+        endforeach;
+        $noGenres = DB::table('genres')->whereNotIn('id', $ids)->get();
+        //dd($noGenres);
+        $data['noGenres'] = $noGenres;
         return view('movie/open')->with($data);
         //echo($r->id); //da el id *.*
     }

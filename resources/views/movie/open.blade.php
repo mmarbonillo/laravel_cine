@@ -13,6 +13,14 @@
             else
                 star.src = '{{ url('images/stars/estrllaamarilla.png') }}';
         }
+
+        function addGenre(){
+            var genre = document.getElementsByName("nogenre");
+        }
+
+        $().ready(function(){
+
+        });
     </script>
 @endsection
 
@@ -26,12 +34,15 @@
             @method('PUT')
         @endif
         <img src='{{ url('images/covers/'.$movie->cover) }}' alt='cover' height='350px' width='250px'>
-        <input type="file" name="cover" value="{{ $movie->cover }}" style="display:{{$displayi ?? 'none'}}">
-        <input type='button' name='edit' class='editButton' value='EDIT' onclick="window.location.href='{{ route('movie.edit', ['id' => $movie->id]) }}'" style='display:{{$displayp ?? 'none'}}'>
-        <input type='button' name='delete' class='deleteButton' value='DELETE' style='display:{{$displayp ?? 'none'}}'>
+        <input type="file" name="cover" value="{{ $movie->cover }}" style="display:{{$displayi ?? 'none'}}" style="color: transparent;">
+        @auth
+            <input type='button' name='editt' class='editButton' value='EDIT' onclick="window.location.href='{{ route('movie.edit', ['id' => $movie->id]) }}'" style='display:{{$displayp ?? 'none'}}'>
+            <input type='button' name='deletee' class='deleteButton' value='DELETE' style='display:{{$displayp ?? 'none'}}'>
+        @endauth
+        
 </div>
 <div id='movieInfo'>
-
+    <h3>
     @for ($i = 0; $i < $movie->rating; $i++)
         <img class='rating yellow' src='{{ url('images/stars/estrllaamarilla.png') }}' alt='rating' height='20px' width='20px' onmouseover="changeStars(this)">
     @endfor
@@ -41,6 +52,7 @@
         @if ($displayi == "block")
             <br>
         @endif
+    </h3>
         <input type="num" class="indentp" name="rating" value="{{ $movie->rating }}" style='display:{{$displayi ?? 'none'}}'>
         
     
@@ -58,17 +70,26 @@
         <input type='button' name='viewMovie' class='viewMovie' value='VIEW' style='display:{{$displayp ?? 'none'}}'>
     @endguest
 
-    <br style='display:{{$displayi ?? 'none'}}'>
-    <input type="submit" name="save" value="Save Changes" style='display:{{$displayi ?? 'none'}}'>
-
     @if ($displayi == "block")
         </form>
     @endif
     <h3>Genres</h3>
-    @foreach ($genres as $genre)
-        <a href="{{ route('genre.show', $genre->genre) }}">{{ $genre->genre }}</a>
-    @endforeach
-
+    <div class="genres">
+        @foreach ($genres as $genre)
+            <a class="genres indentp" href="{{ route('genre.show', $genre->genre) }}">{{ $genre->genre }}&nbsp;</a>
+        @endforeach
+    </div>
+    @if ($displayi == "block")
+        <div class="noGenres">
+            @foreach ($noGenres as $genre)
+                <input type="checkbox" name="nogenre" value="{{ $genre->id }}">{{ $genre->genre }}<br>
+            @endforeach
+        </div>
+    @endif
+    
+    <br style='display:{{$displayi ?? 'none'}}'>
+    <br>
+    <input type="submit" name="save" value="Save Changes" style='display:{{$displayi ?? 'none'}}'>
 </div>
 
 @endsection

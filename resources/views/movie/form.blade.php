@@ -24,6 +24,11 @@
             <div class="campo">
                 <input type="text" name="filename"/>
             </div>
+            @error('filename')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
         <div class="opcion">
             <div class="etiqueta">

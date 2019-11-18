@@ -20,7 +20,7 @@
 
 <form id="delete" action="{{ route('genre.delete') }}" method="POST">
     @csrf
-    <select id="genresSelect" name="genres[]" multiple>
+    <select class="genresSelect" name="genres[]" multiple>
     @foreach ($genresList as $genre)
         <option ondblclick="window.location.href='{{ route('genre.edit', $genre->genre) }}'" value="{{ $genre->id }}">{{ $genre->genre }}</option>
     @endforeach

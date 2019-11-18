@@ -13,7 +13,7 @@
     <div class='movie'>
         @auth
         <input type='button' name='edit' class='editButton' value='EDIT' onclick="window.location.href='{{route('movie.edit', ['id' => $movie->id])}}'">
-        <input type='button' name='delete' class='deleteButton' value='DELETE' onclick="window.location.href='{{route('movie.destroy', ['id' => $movie->id])}}'">
+        <input type='button' name='deletee' class='deleteButton' value='DELETE' onclick="window.location.href='{{route('movie.destroy', ['id' => $movie->id])}}'">
         @endauth
         
         <a href='{{ route('movie.show', ['id' => $movie->id]) }}'><img class='divmovie' src='{{ url('images/covers/'.$movie->cover) }}' alt='cover' height='350px' width='250px'></a>

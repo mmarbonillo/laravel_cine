@@ -132,7 +132,7 @@ p.indentp {
     line-height: 0px;
 }
 
-input[class="indentp"]{
+input[class="indentp"], select.indentp{
     padding-left: 15px;
     margin-top: -13px;
     margin-bottom: -10px;
@@ -296,7 +296,7 @@ transition: opacity 400ms ease-in;
     float: right;
 }
 
-#genresSelect {
+.genresSelect {
     float: left;
     width: 150px;
     height: 160px;
@@ -325,4 +325,18 @@ input[name='delete']{
     float: left;
     clear: both;
     margin-top: 15px;
+}
+
+div.genres {
+    float: left;
+    /*border: 1px solid red;*/
+    width: auto;
+    
+}
+
+.noGenres{
+    margin-left: 15px;
+    float: left;
+    width: auto;
+    /*border: 1px solid black;*/
 }
