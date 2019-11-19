@@ -23,6 +23,8 @@ Route::get('movies/{id}/edit', 'MovieController@edit')->name('movie.edit');
 Route::put('movies/{id}/update', 'MovieController@update')->name('movie.update');
 Route::get('movies/{id}/delete', 'MovieController@destroy')->name('movie.destroy');
 
+Route::get('genre/prueba', 'GenreController@prueba')->name('genre.prueba');
+Route::get('genre/add', 'GenreController@add')->name('genre.add');
 Route::post('genre/delete', 'GenreController@destroy')->name('genre.delete');
 Route::resource('genre', 'GenreController', [
     'names' => [

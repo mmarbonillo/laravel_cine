@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Genre;
+use App\Movie;
 use Auth;
 
 class GenreController extends Controller
@@ -51,5 +52,18 @@ class GenreController extends Controller
         endforeach;
         $data['mensaje'] = "Géneros eliminados con éxito";
         return redirect()->route('genre.create', $data);
+    }
+
+    public function prueba(){
+        $user = Auth::user();
+        $data['user'] = $user;
+        return view("genre/pruebaform");
+    }
+
+    public function add(Request $r){
+        $movie = Movie::find($r->movie);
+        $movie->genres()->attach($r->genre);
+        echo "1";
+
     }
 }

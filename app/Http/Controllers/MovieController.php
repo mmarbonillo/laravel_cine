@@ -83,6 +83,7 @@ class MovieController extends Controller {
             $file = $r->file('cover');
             $name = $file->getClientOriginalName();
             Storage::disk('covers')->put($name, File::get($file));
+            $movie->cover = $name;
         endif;
         $movie->save();
         //$movie->fill($r->all());
