@@ -25,6 +25,8 @@ Route::get('movies/{id}/delete', 'MovieController@destroy')->name('movie.destroy
 
 Route::get('genre/prueba', 'GenreController@prueba')->name('genre.prueba');
 Route::get('genre/add', 'GenreController@add')->name('genre.add');
+Route::get('genre/all', 'GenreController@all')->name('genre.all');
+Route::get('genre/new', 'GenreController@new')->name('genre.new');
 Route::post('genre/delete', 'GenreController@destroy')->name('genre.delete');
 Route::resource('genre', 'GenreController', [
     'names' => [

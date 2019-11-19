@@ -64,6 +64,25 @@ class GenreController extends Controller
         $movie = Movie::find($r->movie);
         $movie->genres()->attach($r->genre);
         echo "1";
+    }
 
+    public function all(){
+        $all = Genre::all();
+        $names = [];
+        foreach($all as $genre){
+            $names[] = $genre->genre;
+        }
+        /*for($i = 0; $i < $names; $i++){
+            echo ($names[$i]."<br>");
+        }*/
+        echo json_encode($names);;
+        /*dd($genres[0]);
+        var_dump($genres);*/
+    }
+
+    public function new(Request $r){
+        $genre = new Genre($r->all());
+        $genre->save();
+        echo "1";
     }
 }

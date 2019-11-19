@@ -15,10 +15,28 @@
             $('input#genre').keypress(function(key){
                 if(key.which == 13){
                     var valor = $('input#genre').val();
-                    $('div#genresList').append('<p class="oneGenre">- '+valor+'</p>');
+                    /*$('div#div').append('<p class="oneGenre">- '+valor+'</p>');
+                    $('input#genre').val('');*/
+                $.get("{{ route('genre.new') }}",{genre: valor}, function() {
+                    $('div#div').append('<p class="oneGenre">'+valor+'</p>');
                     $('input#genre').val('');
+                });
                 }
             });
+
+            $("#addGenre").click(function(){
+                $.get("{{ route('genre.all') }}", function(resp) {
+                    var names = JSON.parse(resp);
+                    //alert(names[0]);
+                    //$("div#div").append("<p>"+ names[0] +"</p>");
+                    for(i = 0; i < names.length; i=i+1){
+                        //alert(names[i]);
+                        $("div#div").append("<p class='oneGenre'>"+ names[i] +"</p>");
+                    }
+                });
+            })
+
+
         });
 
         function showModal() {
@@ -42,7 +60,7 @@
                 <p><a class="nodecoration" href='{{ route('user.logout', ['id' => $user->id]) }}'>Logout</a></p>
                 <img id='imagen' src='{{ url('images/icons/user.png') }}' alt='usuario' onclick="window.location.href='{{ route('user.index') }}'"/>
                 <!--<a class="nodecoration" onclick="showModal();">Add Genre</a>-->
-                <p><a class="nodecoration" href='{{ route('genre.create') }}'>Add Genre</a></p>
+                <p><a id="addGenre" class="nodecoration" onclick="showModal();" style="cursor: pointer;">Add Genre</a></p>
                 <p><a class="nodecoration" href="{{ route('movie.create') }}">Add Movie</a></p>
             @endauth
             @guest
@@ -57,6 +75,17 @@
         <div id="content">
             @yield('content')
         </div>
+
+        
+            <div id="openModal" class="modalDialog" style="display: none">
+                <div id="div">
+                    <a href="#" title="Close" class="close" onclick="CloseModal()">X</a>
+                    <h3>ADD GENRE</h3>
+                    <label for="genre">Genre</label>
+                    <input id="genre" type="text" name="genre">
+                </div>
+            </div>
+        
         
     </div>
 </body>
