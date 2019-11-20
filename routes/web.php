@@ -17,11 +17,12 @@ Route::get('user/{id}/logout', 'UserController@logout')->name('user.logout');
 //Route::get('movies', 'MovieController@index')->name('movie.index'); //no funciona por algún motivo
 Route::get('movies/home', 'MovieController@index')->name('movie.index');
 Route::get('movies/new', 'MovieController@create')->name('movie.create');
-Route::post('movies', 'MovieController@store')->name('movie.store');
+Route::post('movies/store', 'MovieController@store')->name('movie.store');
 Route::get('movies/{id}/show', 'MovieController@show')->name('movie.show');
 Route::get('movies/{id}/edit', 'MovieController@edit')->name('movie.edit');
 Route::put('movies/{id}/update', 'MovieController@update')->name('movie.update');
 Route::get('movies/{id}/delete', 'MovieController@destroy')->name('movie.destroy');
+Route::get('movie/delete', 'MovieController@delete')->name('movie.delete');
 
 Route::get('genre/prueba', 'GenreController@prueba')->name('genre.prueba');
 Route::get('genre/add', 'GenreController@add')->name('genre.add');

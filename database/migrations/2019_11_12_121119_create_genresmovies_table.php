@@ -17,8 +17,8 @@ class CreateGenresmoviesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('genre_id');
             $table->bigInteger('movie_id');
-            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->useCurrent();
             //$table->timestamps();
         });
     }

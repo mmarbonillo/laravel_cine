@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="{{ url('css/style.css') }}">
     <!--<script type="text/javascript" src="javascript/javascript.js"></script>-->
-    @yield('scripts')
+    
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <script type="text/javascript">
         $().ready(function() {
@@ -18,7 +18,7 @@
                     /*$('div#div').append('<p class="oneGenre">- '+valor+'</p>');
                     $('input#genre').val('');*/
                 $.get("{{ route('genre.new') }}",{genre: valor}, function() {
-                    $('div#div').append('<p class="oneGenre">'+valor+'</p>');
+                    $('div#allGenres').append('<p class="oneGenre">'+valor+'</p>');
                     $('input#genre').val('');
                 });
                 }
@@ -31,8 +31,9 @@
                     //$("div#div").append("<p>"+ names[0] +"</p>");
                     for(i = 0; i < names.length; i=i+1){
                         //alert(names[i]);
-                        $("div#div").append("<p class='oneGenre'>"+ names[i] +"</p>");
+                        $("div#allGenres").append("<p class='oneGenre'>"+ names[i] +"</p>");
                     }
+                    $("#openModal").css("display", "block");
                 });
             })
 
@@ -47,6 +48,7 @@
             document.getElementById('openModal').style.display = 'none';
         }
     </script>
+    @yield('scripts')
     
 </head>
 
@@ -60,7 +62,7 @@
                 <p><a class="nodecoration" href='{{ route('user.logout', ['id' => $user->id]) }}'>Logout</a></p>
                 <img id='imagen' src='{{ url('images/icons/user.png') }}' alt='usuario' onclick="window.location.href='{{ route('user.index') }}'"/>
                 <!--<a class="nodecoration" onclick="showModal();">Add Genre</a>-->
-                <p><a id="addGenre" class="nodecoration" onclick="showModal();" style="cursor: pointer;">Add Genre</a></p>
+                <p><a id="addGenre" class="nodecoration" style="cursor: pointer;">Add Genre</a></p>
                 <p><a class="nodecoration" href="{{ route('movie.create') }}">Add Movie</a></p>
             @endauth
             @guest
@@ -83,6 +85,9 @@
                     <h3>ADD GENRE</h3>
                     <label for="genre">Genre</label>
                     <input id="genre" type="text" name="genre">
+                    <div id="allGenres">
+
+                    </div>
                 </div>
             </div>
         

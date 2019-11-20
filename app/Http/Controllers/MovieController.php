@@ -105,4 +105,11 @@ class MovieController extends Controller {
         //return view('user/adminPanel', $data);
     }
 
+    public function delete(Request $r){
+        $movie = Movie::find($r->movie);
+        Storage::disk('covers')->delete($movie->cover);
+        $movie->delete();
+        echo "1";
+    }
+
 }

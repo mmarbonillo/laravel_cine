@@ -9,29 +9,12 @@
     <script type="text/javascript">
         function changeStars(star){
             if(star.class == 'yellow')
-                star.src = '{{ url('images/stars/estrellablanca.png') }}';
+                star.src = '{{ url("images/stars/estrellablanca.png") }}';
             else
-                star.src = '{{ url('images/stars/estrllaamarilla.png') }}';
+                star.src = '{{ url("images/stars/estrllaamarilla.png") }}';
         }
-        /*function procesa_respuesta() {
-            if(peticion_http.readyState == 4) {
-                if(peticion_http.status == 200) {
-                    if(peticion_http.responseText == 1){
-                        var opc = document.getElementById("nogenre"+genreId);
-                        var padre = opc.parentNode();
-                        var capa = document.getElementById("genres");
-                        var genre = document.createElement("a");
-                        genre.className = "genres indentp";
-                        genre.href = "{{ route('genre.show', " + opc.innerHTML + ") }}";
-                        var text = document.createTextNode(opc.innerHTML);
-                        genre.appendChild(text);
-                        capa.appendChild(genre);
-                        padre.removeChild(opc);
 
-                    }
-                }
-            }
-        }*/
+        $(".rating").mouseenter(changeStars(this));
 
         peticion_http = new XMLHttpRequest();
         var genreId = 0
@@ -41,12 +24,6 @@
                 var movieId = document.getElementById("movieId").value;
                 var genreId = $(this).val();
                 var text = $(this).text();
-                //alert(text); ESTO FUNCIONA
-                /*var query_string = "&genreId=" + encodeURIComponent($(this).val()) + "&movieId=" + movieId;
-                peticion_http.onreadystatechange = procesa_respuesta();
-                peticion_http.open("POST", "http://localhost:3000/genre/add", true);
-                peticion_http.setRequestHeader("Content-Type", "application/x-wwwform\-urlencoded");
-                peticion_http.send(query_string);*/
                 $.get("http://localhost:3000/genre/add", {genre: $(this).val(), movie: movieId}, function(resp) {
                     //if(resp == 1){
                         //Recojo el div con los géneros y le añado el género

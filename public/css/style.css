@@ -341,3 +341,8 @@ div.genres {
     height: auto;
     /*border: 1px solid black;*/
 }
+
+div#allGenres {
+    height: 350px;
+    overflow: scroll
+}
