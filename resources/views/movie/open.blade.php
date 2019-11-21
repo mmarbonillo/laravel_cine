@@ -21,13 +21,13 @@
 
         $().ready(function(){
             $("option.noGenreOption").dblclick(function(){
-                var movieId = document.getElementById("movieId").value;
+                var movieId = $("#movieId").val();
                 var genreId = $(this).val();
                 var text = $(this).text();
-                $.get("http://localhost:3000/genre/add", {genre: $(this).val(), movie: movieId}, function(resp) {
+                $.get("{{ route('genre.add') }}", {genre: $(this).val(), movie: movieId}, function(resp) {
                     //if(resp == 1){
                         //Recojo el div con los géneros y le añado el género
-                        $("div.genres").append("<a class='genres indentp' href='{{ route('genre.show', "+ genreId +") }}'>"+ text +"</a>");
+                        $("div.genres").append("<a class='genres indentp' href='{{ route('genre.show', "+ genreId +") }}'>"+ text +" </a>");
                         //Elimino el género de la lista de "no generos"
                         $("#nogenre"+genreId).remove();
                     //}
@@ -69,36 +69,51 @@
     </h3>
         <input type="num" class="indentp" name="rating" value="{{ $movie->rating }}" style='display:{{$displayi ?? 'none'}}'>
         
-    
-    <h3>Tittle</h3>
-    <p class='indentp' style='display:{{$displayp ?? 'none'}}'>{{ $movie->title }}</p>
-    <input type='text' class='indentp' name='title' style='display:{{$displayi ?? 'none'}}' value='{{$movie->title}}'>
-    <h3>Year</h3>
-    <p class="indentp" style='display:{{$displayp ?? 'none'}}'>{{ $movie->year }}</p>
-    <input type='number' class='indentp' name='year' style='display:{{$displayi ?? 'none'}}' value='{{$movie->year}}'>
-    <h3>Duration</h3>
-    <p class='indentp' style='display:{{$displayp ?? 'none'}}'>{{ $movie->duration }}</p>
-    <input type='text' class='indentp' name='duration' style='display:{{$displayi ?? 'none'}}' value='{{$movie->duration}}'>
+    <div id="info1">
+        <h3>Tittle</h3>
+        <p class='indentp' style='display:{{$displayp ?? 'none'}}'>{{ $movie->title }}</p>
+        <input type='text' class='indentp' name='title' style='display:{{$displayi ?? 'none'}}' value='{{$movie->title}}'>
+        <h3>Year</h3>
+        <p class="indentp" style='display:{{$displayp ?? 'none'}}'>{{ $movie->year }}</p>
+        <input type='number' class='indentp' name='year' style='display:{{$displayi ?? 'none'}}' value='{{$movie->year}}'>
+        <h3>Duration</h3>
+        <p class='indentp' style='display:{{$displayp ?? 'none'}}'>{{ $movie->duration }}</p>
+        <input type='text' class='indentp' name='duration' style='display:{{$displayi ?? 'none'}}' value='{{$movie->duration}}'>
+
+        <h3>Genres</h3>
+        <div class="genres">
+            @foreach ($genres as $genre)
+                <a class="genres indentp" href="{{ route('genre.show', $genre->genre) }}">{{ $genre->genre }}&nbsp;</a>
+            @endforeach
+        </div>
+        @if ($displayi == "block")
+            <div class="noGenres">
+                <select name="noGenresSelect" style="height: auto;" multiple>
+                @foreach ($noGenres as $genre)
+                    <option id="nogenre{{ $genre->id }}" class="noGenreOption" value="{{ $genre->id }}">{{ $genre->genre }}</option>
+                @endforeach
+                </select>
+            </div>
+        @endif
+    </div>
+    <div id="info2">
+        <h3>Cast</h3>
+        @foreach ($movie->cast as $actor)
+            <a class="indentp" href="{{ route('people.show', $actor->id) }}">{{ $actor->name }}</a>
+        @endforeach
+    </div>
+    <div id="info3">
+        <h3>Directors</h3>
+        @foreach ($movie->direct as $director)
+            <a class="indentp" href="{{ route('people.show', $director->id) }}">{{ $director->name }}</a>
+        @endforeach
+    </div>
     
     @guest
         <input type='button' name='viewMovie' class='viewMovie' value='VIEW' style='display:{{$displayp ?? 'none'}}'>
     @endguest
 
-    <h3>Genres</h3>
-    <div class="genres">
-        @foreach ($genres as $genre)
-            <a class="genres indentp" href="{{ route('genre.show', $genre->genre) }}">{{ $genre->genre }}&nbsp;</a>
-        @endforeach
-    </div>
-    @if ($displayi == "block")
-        <div class="noGenres">
-            <select name="noGenresSelect" style="height: auto;" multiple>
-            @foreach ($noGenres as $genre)
-                <option id="nogenre{{ $genre->id }}" class="noGenreOption" value="{{ $genre->id }}">{{ $genre->genre }}</option>
-            @endforeach
-            </select>
-        </div>
-    @endif
+    
     
     <br style='display:{{$displayi ?? 'none'}}'>
     <br>

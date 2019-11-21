@@ -23,6 +23,7 @@ Route::get('movies/{id}/edit', 'MovieController@edit')->name('movie.edit');
 Route::put('movies/{id}/update', 'MovieController@update')->name('movie.update');
 Route::get('movies/{id}/delete', 'MovieController@destroy')->name('movie.destroy');
 Route::get('movie/delete', 'MovieController@delete')->name('movie.delete');
+Route::get('movies/admin', 'MovieController@admin');
 
 Route::get('genre/prueba', 'GenreController@prueba')->name('genre.prueba');
 Route::get('genre/add', 'GenreController@add')->name('genre.add');
@@ -40,10 +41,19 @@ Route::resource('genre', 'GenreController', [
         'edit' => 'genre.edit',
     ]]);
 
+Route::resource('people', 'PeopleController', [
+    'names' => [
+        'index' => 'people.index',
+        'store' => 'people.store',
+        'create' => 'people.create',
+        'show' => 'people.show',
+        //'destroy' => 'people.destroy',
+        'update' => 'people.update',
+        'edit' => 'people.edit',
+    ]]);
+
+
 //LOGIN
-
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

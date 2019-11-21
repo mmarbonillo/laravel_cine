@@ -124,5 +124,47 @@ class GenresmoviesTableSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date,
         ]);
+        DB::table('genres_movies')->insert([
+            'genre_id' => 13,
+            'movie_id' => 5,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        DB::table('genres_movies')->insert([
+            'genre_id' => 13,
+            'movie_id' => 9,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        DB::table('genres_movies')->insert([
+            'genre_id' => 13,
+            'movie_id' => 2,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        DB::table('genres_movies')->insert([
+            'genre_id' => 14,
+            'movie_id' => 5,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        DB::table('genres_movies')->insert([
+            'genre_id' => 1,
+            'movie_id' => 5,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        DB::table('genres_movies')->insert([
+            'genre_id' => 6,
+            'movie_id' => 5,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        DB::table('genres_movies')->insert([
+            'genre_id' => 11,
+            'movie_id' => 5,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
     }
 }

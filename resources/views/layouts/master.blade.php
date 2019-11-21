@@ -61,8 +61,8 @@
             @auth
                 <p><a class="nodecoration" href='{{ route('user.logout', ['id' => $user->id]) }}'>Logout</a></p>
                 <img id='imagen' src='{{ url('images/icons/user.png') }}' alt='usuario' onclick="window.location.href='{{ route('user.index') }}'"/>
-                <!--<a class="nodecoration" onclick="showModal();">Add Genre</a>-->
                 <p><a id="addGenre" class="nodecoration" style="cursor: pointer;">Add Genre</a></p>
+                <p><a class="nodecoration"  href="{{ route('people.create') }}">Add People</a></p>
                 <p><a class="nodecoration" href="{{ route('movie.create') }}">Add Movie</a></p>
             @endauth
             @guest

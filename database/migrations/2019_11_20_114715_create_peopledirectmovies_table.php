@@ -13,7 +13,7 @@ class CreatePeopledirectmoviesTable extends Migration
      */
     public function up()
     {
-        Schema::create('peopledirectmovies', function (Blueprint $table) {
+        Schema::create('people_direct_movies', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('director_id');
             $table->integer('movie_id');

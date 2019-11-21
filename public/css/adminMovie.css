@@ -1,0 +1,10 @@
+#adminMoviesMenu {
+    border: 1px solid red;
+    float: left;
+    width: auto;
+    
+}
+
+ul {
+    list-style: none;
+}

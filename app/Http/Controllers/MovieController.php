@@ -112,4 +112,10 @@ class MovieController extends Controller {
         echo "1";
     }
 
+    public function admin(){
+        $user = Auth::user();
+        $data['user'] = $user;
+        return view('movie/admin', $data);
+    }
+
 }

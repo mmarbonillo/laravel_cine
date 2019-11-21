@@ -1,5 +1,5 @@
 #all {
-	width: 85%;
+	width: 100%;
 	position: relative;
 	margin: 0 auto;
     background-size: 100%;
@@ -62,6 +62,11 @@ a.nodecoration {
     margin-right: 12px;
 }
 
+img.divmovie{
+    height: 250px;
+    width: 150px;
+}
+
 #movies {
     float: left;
     border: 1px solid blue;
@@ -69,10 +74,19 @@ a.nodecoration {
 
 .movie {
     float: left;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     width: 250px;
     margin-top: 35px;
-    margin-left: 55px;
+    margin-left: 70px;
+    margin-bottom: 50px;
+}
+
+.movieIndex {
+    float: left;
+    height: 310px;
+    width: 166px;
+    margin-top: 35px;
+    margin-left: 40px;
     margin-bottom: 50px;
 }
 
@@ -107,6 +121,31 @@ a.nodecoration {
     border: 2px solid #990202;
 }
 
+.editButtonIndex {
+    float: left;
+    text-decoration: none;
+    padding: 8px;
+    font-weight: 400;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;
+}
+
+.deleteButtonIndex {
+    float: left;
+    text-decoration: none;
+    padding: 8px;
+    margin-left: 19px;
+    font-weight: 400;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: #fd5353;
+    border-radius: 6px;
+    border: 2px solid #990202;
+}
+
 .viewMovie {
     text-decoration: none;
     padding: 10px;
@@ -121,15 +160,16 @@ a.nodecoration {
 
 #movieInfo {
     float: left;
-    margin-left: 1%;
+    margin-left: 40px;
     margin-top: 25px;
-    width: 40%;
+    width: 75%;
     /*border: 1px solid red;*/
 }
 
 p.indentp {
     padding-left: 15px;
-    line-height: 0px;
+    margin-top: -13px;
+    /*margin-bottom: -10px;*/
 }
 
 input[class="indentp"], select.indentp{
@@ -345,4 +385,22 @@ div.genres {
 div#allGenres {
     height: 350px;
     overflow: scroll
+}
+
+#info1 {
+    /*border: 1px solid black;*/
+    float: left;
+    width: 300px;
+    max-width: 300px;
+}
+
+#info2{
+    /*border: 1px solid red;*/
+    float: left;
+    width: 300px;
+}
+
+#info3 {
+    float: left;
+    width: 300px;
 }

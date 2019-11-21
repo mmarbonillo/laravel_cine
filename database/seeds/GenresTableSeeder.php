@@ -84,5 +84,15 @@ class GenresTableSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date,
         ]);
+        DB::table('genres')->insert([ //13
+            'genre' => 'animation',
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        DB::table('genres')->insert([ //14
+            'genre' => 'romance',
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
     }
 }
