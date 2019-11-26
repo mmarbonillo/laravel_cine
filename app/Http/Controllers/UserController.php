@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\myUser;
 use Auth;
+use App\Http\Requests\ValidateCreateUsersForm;
 
 class UserController extends Controller {
     
@@ -23,11 +24,14 @@ class UserController extends Controller {
     }
 
     public function show() {
-        
+        return view('user/formUser');
     }
     
-    public function create() {
-        return view('user/formUser');
+    public function create(Request $r) {
+        $user = new myUser($r->except(['confirmPassword', '_token']));
+        $user->save();
+        echo $user->id;
+        //dd($r);
     }
 
     public function store(Request $r) {

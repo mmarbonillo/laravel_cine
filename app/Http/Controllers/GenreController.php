@@ -75,9 +75,24 @@ class GenreController extends Controller
         /*for($i = 0; $i < $names; $i++){
             echo ($names[$i]."<br>");
         }*/
-        echo json_encode($names);;
+        echo json_encode($names);
         /*dd($genres[0]);
         var_dump($genres);*/
+    }
+
+    public function all2(){
+        $all = Genre::all();
+        $names = [];
+        $ids = [];
+        foreach($all as $genre){
+            $names[] = $genre->genre;
+        }
+        foreach($all as $genre){
+            $ids[] = $genre->id;
+        }
+        $data["names"] = $names;
+        $data["ids"] = $ids;
+        echo json_encode($data);
     }
 
     public function new(Request $r){

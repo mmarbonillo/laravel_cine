@@ -6,8 +6,8 @@
 Route::get('user', 'UserController@index')->name('user.index');
 Route::get('user/', 'UserController@index')->name('user.index');
 Route::post('user', 'UserController@store')->name('user.store');
-Route::get('user/create', 'UserController@create')->name('user.create');
-/*Route::get('user/{id}', 'UserController@show')->name('user.show');*/
+Route::post('user/create', 'UserController@create')->name('user.create');
+Route::get('user/show', 'UserController@show')->name('user.show');
 Route::get('user/{id}/delete', 'UserController@destroy')->name('user.destroy');
 Route::put('user/editar', 'UserController@update')->name('user.update');
 Route::get('user/{id}/editar', 'UserController@edit')->name('user.edit');
@@ -28,6 +28,7 @@ Route::get('movies/admin', 'MovieController@admin');
 Route::get('genre/prueba', 'GenreController@prueba')->name('genre.prueba');
 Route::get('genre/add', 'GenreController@add')->name('genre.add');
 Route::get('genre/all', 'GenreController@all')->name('genre.all');
+Route::get('genre/all2', 'GenreController@all2')->name('genre.alll');
 Route::get('genre/new', 'GenreController@new')->name('genre.new');
 Route::post('genre/delete', 'GenreController@destroy')->name('genre.delete');
 Route::resource('genre', 'GenreController', [

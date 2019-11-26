@@ -2,12 +2,9 @@
     {{$mensaje}}
 @endif
 
-@if (!isset($user))
-    <form action="{{route('user.store')}}" method="POST">
-@else
-    <form action="{{route('user.update', ['id' => $user->id])}}" method="POST">
-        @method('PUT')
-@endif
+
+    <form action="{{route('user.create')}}" method="POST">
+
 
 @csrf
     <div class="opcion">

@@ -268,9 +268,13 @@ form {
     margin-left: 2%;
 }
 
+.opcion {
+    margin-bottom: 18px;
+}
+
 .etiqueta {
     float: left;
-    width: 85px;
+    width: 100px;
 }
 
 .campo {
@@ -298,11 +302,11 @@ form {
 	pointer-events: auto;
 }
 .modalDialog > div#div {
-    width: 300px;
+    width: 350px;
     height: 600;
 	position: relative;
 	margin: 10% auto;
-	padding: 5px 20px 13px 20px;
+	padding: 15px 20px 13px 20px;
 	border-radius: 10px;
 	background: #fff;
 	background: -moz-linear-gradient(#fff, #999);

@@ -1,0 +1,24 @@
+#add{
+    border: 1px solid green;
+    position: absolute;
+    width: 50px;
+    margin-left: 80%;
+    /*height: 100px;
+    left: 80%;*/
+}
+
+#edit {
+    border: 1px solid yellow;
+    position: absolute;
+    width: 50px;
+    margin-left: 84%;
+    /*height: 100px;
+    left: 86%;*/
+}
+
+#delete {
+    border: 1px solid yellow;
+    position: absolute;
+    width: 50px;
+    margin-left: 88%;
+}
