@@ -38,26 +38,29 @@ class GenreController extends Controller
         return redirect()->route('genre.create', $data);
     }
 
-    public function edit(Request $r){
-        //echo '<pre>'.$r->genre.'</pre>';
-        /*$genero = Genre::where('genre',  $r->genre)->get();
-        $data['genre'] = $genero;
-        return view('genre/edit');*/
+    public function modify(Request $r){
+        $genre = Genre::find($r->id);
+        $genre->genre = $r->name;
+        $genre->save();
+        $data["id"] = $genre->id;
+        $data["genre"] = $genre->genre;
+        echo json_encode($data);
+        //echo $r->name;
     }
 
     public function destroy(Request $r){
-        foreach($r->genres as $id):
+        $genres = json_decode($r->genres);
+        foreach($genres as $id):
             $genre = Genre::find($id);
             $genre->delete();
         endforeach;
-        $data['mensaje'] = "Géneros eliminados con éxito";
-        return redirect()->route('genre.create', $data);
+        echo "1";
     }
 
     public function prueba(){
         $user = Auth::user();
         $data['user'] = $user;
-        return view("genre/pruebaform");
+        return view("genre/pruebaform", $data);
     }
 
     public function add(Request $r){

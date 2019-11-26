@@ -5,12 +5,11 @@
 @endif
 
 @section('content')
-<form action="{{route('genre.add') }}" method="POST">
+<form action="{{route('genre.modify') }}" method="GET">
     @csrf
-    <label for="movie">Movie</label>
-    <input type="number" name="movie">
     <label for="genre">Genre</label>
-    <input type="number" name="genre">
+    <input type="text" name="genre">
+    <input type="hidden" name="id" value="1">
     <input type="submit" name="mandar" value="Enviar">
 </form>
     

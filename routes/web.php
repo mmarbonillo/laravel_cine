@@ -30,6 +30,7 @@ Route::get('genre/add', 'GenreController@add')->name('genre.add');
 Route::get('genre/all', 'GenreController@all')->name('genre.all');
 Route::get('genre/all2', 'GenreController@all2')->name('genre.alll');
 Route::get('genre/new', 'GenreController@new')->name('genre.new');
+Route::get('genre/edit', 'GenreController@modify')->name('genre.modify');
 Route::post('genre/delete', 'GenreController@destroy')->name('genre.delete');
 Route::resource('genre', 'GenreController', [
     'names' => [
@@ -39,7 +40,7 @@ Route::resource('genre', 'GenreController', [
         'show' => 'genre.show',
         //'destroy' => 'genre.destroy',
         'update' => 'genre.update',
-        'edit' => 'genre.edit',
+        //'edit' => 'genre.edit',
     ]]);
 
 Route::resource('people', 'PeopleController', [

@@ -22,3 +22,8 @@
     width: 50px;
     margin-left: 88%;
 }
+
+#deleteSelectSite {
+    height: 300px;
+    overflow: scroll;
+}

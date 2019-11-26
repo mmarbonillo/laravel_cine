@@ -12,14 +12,13 @@
     </p>
 
 
-VENTANA MODAL
-<form action="{{ route('genre.create') }}" method="POST">
-    <div id="openModal" class="modalDialog" style="display: none">
-        <div id="div">
-        <a href="#" title="Close" class="close" onclick="CloseModal()">X</a>
-        <h3>ADD GENRE</h3>
-            <label for="genre">Genre</label>
-            <input id="genre" type="text" name="genre">
-        </div>
-    </div>
-</form>
+
+, function(resp){
+                    alert(JSON.parse(resp));
+                    /*var data = JSON.parse(resp);
+                    $("option#"+data['id']).text(data["genre"]);
+                    $("#selectEditGenre").css("display", "block");
+                    $("#selectEditGenre").css("display", "block");
+                    $("#inputEditGenre").css("display", "none");
+                    $("button#save").css("display", "none");*/
+                }
