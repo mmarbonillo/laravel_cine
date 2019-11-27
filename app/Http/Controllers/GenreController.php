@@ -48,8 +48,9 @@ class GenreController extends Controller
         //echo $r->name;
     }
 
-    public function destroy(Request $r){
-        $genres = json_decode($r->genres);
+    public function destroy($ids){
+        $genres = json_decode($ids);
+        //dd($genres);
         foreach($genres as $id):
             $genre = Genre::find($id);
             $genre->delete();

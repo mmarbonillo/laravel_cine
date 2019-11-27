@@ -31,7 +31,7 @@ Route::get('genre/all', 'GenreController@all')->name('genre.all');
 Route::get('genre/all2', 'GenreController@all2')->name('genre.alll');
 Route::get('genre/new', 'GenreController@new')->name('genre.new');
 Route::get('genre/edit', 'GenreController@modify')->name('genre.modify');
-Route::post('genre/delete', 'GenreController@destroy')->name('genre.delete');
+Route::get('genre/destroy/{genres}', 'GenreController@destroy')->name('genre.delete');
 Route::resource('genre', 'GenreController', [
     'names' => [
         'index' => 'genre.index',

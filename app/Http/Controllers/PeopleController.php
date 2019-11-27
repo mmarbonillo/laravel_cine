@@ -30,4 +30,10 @@ class PeopleController extends Controller {
         return view('movie/index', $data);
     }
 
+    public function create(){
+        $user = Auth::user();
+        $data['user'] = $user;
+        return view('people/form', $data);
+    }
+
 }

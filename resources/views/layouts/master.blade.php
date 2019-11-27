@@ -86,18 +86,20 @@
                 var seleccionados = new Array();
                 var i = 0;
                 var elementos = $("input.checkbox");
+                //console.log(elementos);
+                var x = 0;
                 for(i = 0; i < elementos.length; i++){
-                    if(elementos[i].attr('checked')){
-                        seleccionados[i] = elementos[i].val();
+                    if(elementos[i].checked){
+                        seleccionados[x] = elementos[i].value;
+                        x++;
                     }
                 }
-                for(i = 0; i < seleccionados.length; i++){
-                    alert(seleccionados[i]);
-                }
-                /*var genres = JSON.stringify(seleccionados);
-                $.get("{{ route('genre.delete') }}", genres, function(resp){
-                    alert(resp);
-                });*/
+                var genres = JSON.stringify(seleccionados);
+                alert(genres);
+                $.get("{{ url('genre/destroy') }}"+"/"+encodeURI(genres), function(resp){
+                    $("#deleteGenreModal").css("display", "none");
+                    $("#deleteSelectSite").empty();
+                });
             });
         });
         
@@ -180,7 +182,7 @@
             </div>
         <div id="add">
             <p><a class="nodecoration" href="#">Movie</a></p>
-            <p><a class="nodecoration" href="#">People</a></p>
+            <p><a class="nodecoration" href="{{ route('people.create') }}">People</a></p>
             <p><a id="addGenre" class="nodecoration" style="cursor: pointer;">Genre</a></p>
         </div>
         <div id="edit">
