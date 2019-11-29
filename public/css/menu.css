@@ -1,26 +1,36 @@
 #add{
-    border: 1px solid green;
+    /*border: 1px solid green;*/
+    background-color: #CFCFCF;
     position: absolute;
     width: 50px;
-    margin-left: 80%;
+    margin-left: 82%;
+    width: 60px;
     /*height: 100px;
     left: 80%;*/
 }
 
+#add > *, #edit > *, #delete > * {
+    margin-left: 6px;
+}
+
 #edit {
-    border: 1px solid yellow;
+    /*border: 1px solid yellow;*/
+    background-color: #CFCFCF;
     position: absolute;
     width: 50px;
-    margin-left: 84%;
+    margin-left: 85%;
+    width: 60px;
     /*height: 100px;
     left: 86%;*/
 }
 
 #delete {
-    border: 1px solid yellow;
+    /*border: 1px solid yellow;*/
+    background-color: #CFCFCF;
     position: absolute;
     width: 50px;
-    margin-left: 88%;
+    margin-left: 89%;
+    width: 60px;
 }
 
 #deleteSelectSite {

@@ -48,7 +48,7 @@ class PeopledirectmoviesTableSeeder extends Seeder
             'movie_id' => 3,
         ]);
         DB::table('people_direct_movies')->insert([
-            'director_id' => 4,
+            'director_id' => 3,
             'movie_id' => 4,
         ]);
     }

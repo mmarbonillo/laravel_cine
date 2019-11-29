@@ -16,9 +16,6 @@
 
         $(".rating").mouseenter(changeStars(this));
 
-        peticion_http = new XMLHttpRequest();
-        var genreId = 0
-
         $().ready(function(){
             $("option.noGenreOption").dblclick(function(){
                 var movieId = $("#movieId").val();
@@ -33,7 +30,69 @@
                     //}
                 })
             });
-        });
+
+            $("#newCastButton").click(function(){
+                $("#newCastButton").css("display", "none");
+                $("#inputSearchCast").css("display", "block");
+            });
+            $("#inputSearchCast").keydown(function(){
+                $(".castList").css("display", "none");
+            });
+            $("#inputSearchCast").keyup(function(){
+                var valor = $(this).val();
+                if(valor != null && valor != ''){
+                    $.get("{{ route('people.search') }}", {name: valor}, function(resp){
+                        var people = JSON.parse(resp);
+                        for(i = 0; i < people.length; i++){
+                            $("#a"+people[i].id).css("display", "block");
+                        }
+                    });
+                }else{
+                    $(".castList").css("display", "none");
+                }
+                var idCast = 0;
+                $("p.castList").click(function(){
+                    idCast = ($(this).attr('id')).substring(1);
+                    var name = ($(this).text()).substring(1);
+                    var idMovie = $("#movieId").val();
+                    //alert("movie: " + idMovie);
+                    $.get("{{ route('movie.addCast') }}", {movie: idMovie, cast: idCast}, function(resp){
+                        var cadena = "<a class='indentp' href='{{ url('people/showw') }}"+"/"+idCast+"'>"+ name +"</a>";
+                        $("#info2").append(cadena);
+                        $("#a"+resp).remove();
+                    });
+                });
+            });
+            $("#newDirectorButton").click(function(){
+                $("#newDirectorButton").css("display", "none");
+                $("#inputSearchDirector").css("display", "block");
+            });
+            $("#inputSearchDirector").keydown(function(){
+                $(".directorList").css("display", "none");
+            });
+            $("#inputSearchDirector").keyup(function(){
+                var valor = $(this).val();
+                if(valor != null && valor != ''){
+                    $.get("{{ route('people.search') }}", {name: valor}, function(resp){
+                        var people = JSON.parse(resp);
+                        for(i = 0; i < people.length; i++){
+                            $("#d"+people[i].id).css("display", "block");
+                        }
+                    });
+                }else{
+                    $(".directorList").css("display", "none");
+                }
+                $("p.directorList").dblclick(function(){
+                    var idCast = ($(this).attr('id')).substring(1);
+                    var idMovie = $("#movieId").val();
+                    //$.get("{{ route('movie.addCast') }}", {movie: idMovie, cast: idCast}, function(resp){
+
+                    });
+                });
+            });
+
+       
+       
     </script>
 @endsection
 
@@ -97,13 +156,57 @@
         @endif
     </div>
     <div id="info2">
-        <h3>Cast</h3>
+        <h3 >Cast</h3><input type="button" id="newCastButton" style="display:{{ $displayi ?? 'none' }}" value="Add New Cast">
+        <input type="text" id="inputSearchCast" style="display:none;" placeholder="Search Actor/Actress">
+        <div id="castSearchResult">
+            @foreach ($people as $one)
+                @php
+                    $existe = false;
+                    $i = 0;
+                @endphp
+                @while ($i < count($movie->cast) && !$existe)
+                    @if ($movie->cast[$i]->id == $one->id)
+                        @php
+                            $existe = true;
+                        @endphp
+                    @endif
+                    @php
+                        $i++;
+                    @endphp
+                @endwhile
+                    @if (!$existe)
+                        <p class="castList" id="a{{ $one->id }}" style="display:none;">+ {{ $one->name }}</p>
+                    @endif
+            @endforeach
+        </div>
         @foreach ($movie->cast as $actor)
             <a class="indentp" href="{{ route('people.show', $actor->id) }}">{{ $actor->name }}</a>
         @endforeach
     </div>
     <div id="info3">
-        <h3>Directors</h3>
+        <h3>Directors</h3><input type="button" id="newDirectorButton" style="display:{{ $displayi ?? 'none' }}" value="Add New Director">
+        <input type="text" id="inputSearchDirector" style="display:none;" placeholder="Search Director">
+        <div id="directorSearchResult">
+                @foreach ($people as $one)
+                @php
+                    $existe = false;
+                    $i = 0;
+                @endphp
+                @while ($i < count($movie->direct) && !$existe)
+                    @if ($movie->direct[$i]->id == $one->id)
+                        @php
+                            $existe = true;
+                        @endphp
+                    @endif
+                    @php
+                        $i++;
+                    @endphp
+                @endwhile
+                    @if (!$existe)
+                        <p class="directorList" id="a{{ $one->id }}" style="display:none;">+ {{ $one->name }}</p>
+                    @endif
+            @endforeach
+        </div>
         @foreach ($movie->direct as $director)
             <a class="indentp" href="{{ route('people.show', $director->id) }}">{{ $director->name }}</a>
         @endforeach

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 use Illuminate\Http\Request;
+use App\People;
 use App\Movie;
 use Auth;
 use DB;
@@ -26,11 +27,21 @@ class MovieController extends Controller {
         $data["user"] = Auth::user();
         $genres = Movie::find($r->id)->genres;
         $data['genres'] = $genres;
-        return view("movie/open",)->with($data);
+        $people = People::all();
+        //dd($people);
+        $data["people"] = $people;
+        return view("movie/open")->with($data);
     }
     
     public function create() {
-        return view('movie/form');
+        $data["user"] = Auth::user();
+        $peopleDirect = DB::table('people')->join('people_direct_movies', 'people.id', '=', 'people_direct_movies.director_id')->select('people.*')->distinct()->get();
+        $peopleAct = DB::table('people')->join('people_act_movies', 'people.id', '=', 'people_act_movies.actor_id')->select('people.*')->distinct()->get();
+        $data["cast"] = $peopleAct;
+        $data["directors"] = $peopleDirect;
+        $people = People::all();
+        $data["people"] = $people;
+        return view('movie/form', $data);
     }
 
     public function store(Request $r) {
@@ -67,6 +78,9 @@ class MovieController extends Controller {
         $noGenres = DB::table('genres')->whereNotIn('id', $ids)->get();
         //dd($noGenres);
         $data['noGenres'] = $noGenres;
+        $people = People::all();
+        //dd($people);
+        $data["people"] = $people;
         return view('movie/open')->with($data);
         //echo($r->id); //da el id *.*
     }
@@ -110,6 +124,12 @@ class MovieController extends Controller {
         Storage::disk('covers')->delete($movie->cover);
         $movie->delete();
         echo "1";
+    }
+
+    public function addCast(Request $r){
+        $movie = Movie::find($r->movie);
+        $movie->cast()->attach($r->cast);
+        echo $r->cast;
     }
 
     public function admin(){

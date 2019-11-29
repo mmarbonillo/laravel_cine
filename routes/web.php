@@ -23,6 +23,7 @@ Route::get('movies/{id}/edit', 'MovieController@edit')->name('movie.edit');
 Route::put('movies/{id}/update', 'MovieController@update')->name('movie.update');
 Route::get('movies/{id}/delete', 'MovieController@destroy')->name('movie.destroy');
 Route::get('movie/delete', 'MovieController@delete')->name('movie.delete');
+Route::get('movie/addCast', 'MovieController@addCast')->name('movie.addCast');
 Route::get('movies/admin', 'MovieController@admin');
 
 Route::get('genre/prueba', 'GenreController@prueba')->name('genre.prueba');
@@ -43,6 +44,11 @@ Route::resource('genre', 'GenreController', [
         //'edit' => 'genre.edit',
     ]]);
 
+
+Route::get('people/search', 'PeopleController@search')->name('people.search');
+Route::get('people/searchCast', 'PeopleController@searchCast')->name('people.searchCast');
+Route::get('people/searchDirectors', 'PeopleController@searchDirectors')->name('people.searchDirectors');
+Route::get('people/showw/{cast}', 'PeopleController@show')->name('people.showw');
 Route::resource('people', 'PeopleController', [
     'names' => [
         'index' => 'people.index',

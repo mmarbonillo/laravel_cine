@@ -101,9 +101,48 @@
                     $("#deleteSelectSite").empty();
                 });
             });
-        });
-        
 
+            $("#addParrafo").mouseover(function(){
+                $("#add").css("display", "block");
+            });
+            $("#add").mouseover(function(){
+                $("#add").css("display", "block");
+            })
+            $("#addParrafo").mouseleave(function(){
+                $("#add").css("display", "none");
+            });
+            $("#add").mouseleave(function(){
+                $("#add").css("display", "none");
+            });
+            $("#editParrafo").mouseover(function(){
+                $("#edit").css("display", "block");
+            });
+            $("#edit").mouseover(function(){
+                $("#edit").css("display", "block");
+            })
+            $("#editParrafo").mouseleave(function(){
+                $("#edit").css("display", "none");
+            });
+            $("#edit").mouseleave(function(){
+                $("#edit").css("display", "none");
+            });
+            $("#deleteParrafo").mouseover(function(){
+                $("#delete").css("display", "block");
+            });
+            $("#delete").mouseover(function(){
+                $("#delete").css("display", "block");
+            })
+            $("#deleteParrafo").mouseleave(function(){
+                $("#delete").css("display", "none");
+            });
+            $("#delete").mouseleave(function(){
+                $("#delete").css("display", "none");
+            });
+
+
+        });
+
+        
         function showModal(id) {
             document.getElementById(id).style.display = 'block';
         }
@@ -131,9 +170,9 @@
             @auth
                 <p><a class="nodecoration" href='{{ route('user.logout', ['id' => $user->id]) }}'>Logout</a></p>
                 <img id='imagen' src='{{ url('images/icons/user.png') }}' alt='usuario' onclick="window.location.href='{{ route('user.index') }}'"/>
-                <p><a id="deleteP" class="nodecoration" style="cursor: pointer;">Delete</a></p>
-                <p><a id="editP" class="nodecoration"  href="{{ route('people.create') }}">Edit</a></p>
-                <p><a id="addP" class="nodecoration" href="{{ route('movie.create') }}">Add</a></p>
+                <p id="deleteParrafo"><a id="deleteP" class="nodecoration" style="cursor: pointer;">Delete</a></p>
+                <p id="editParrafo"><a id="editP" class="nodecoration"  href="#">Edit</a></p>
+                <p id="addParrafo" style="border: 1px solid red;"><a id="addP" class="nodecoration" href="#">Add</a></p>
             @endauth
             @guest
                 <p><a class="nodecoration" href='{{ route('login') }}'>Login</a></p>
@@ -180,17 +219,17 @@
                     <button id="deleteGenreButton">Delete selected</button>
                 </div>
             </div>
-        <div id="add">
-            <p><a class="nodecoration" href="#">Movie</a></p>
+        <div id="add" style="display:none;">
+            <p><a class="nodecoration" href="{{ route('movie.create') }}">Movie</a></p>
             <p><a class="nodecoration" href="{{ route('people.create') }}">People</a></p>
             <p><a id="addGenre" class="nodecoration" style="cursor: pointer;">Genre</a></p>
         </div>
-        <div id="edit">
+        <div id="edit" style="display:none;">
             <p><a class="nodecoration" href="#">Movie</a></p>
             <p><a class="nodecoration" href="#">People</a></p>
             <p><a id="editGenre" class="nodecoration" style="cursor: pointer;">Genre</a></p>
         </div>
-        <div id="delete">
+        <div id="delete" style="display:none;">
             <p><a class="nodecoration" href="#">Movie</a></p>
             <p><a class="nodecoration" href="#">People</a></p>
             <p><a id="deleteGenre" class="nodecoration" style="cursor: pointer;">Genre</a></p>

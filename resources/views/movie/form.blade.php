@@ -1,75 +1,139 @@
+@extends('layouts.master')
+
 @if(isset($mensaje))
     {{$mensaje}}
 @endif
 
-@if (!isset($user))
-    <form action="{{ route('movie.store') }}" method="POST" enctype="multipart/form-data">
-@else
-    <form action="{{ route('movie.update', ['id' => $user->id]) }}" method="POST" enctype="multipart/form-data">
-@endif
+@section('scripts')
+    <script type="text/javascript">
+        $().ready(function(){
+            $("#inputCast").keydown(function(){
+                $(".castList").css("display", "none");
+            });
+            $("#inputCast").keyup(function(){
+                var valor = $(this).val();
+                if(valor != null && valor != ''){
+                    $.get("{{ route('people.search') }}", {name: valor}, function(resp){
+                        var people = JSON.parse(resp);
+                        for(i = 0; i < people.length; i++){
+                            $("#"+people[i].id).css("display", "block");
+                        }
+                    });
+                }
+                $("p.castList").dblclick(function(){
+                    alert($(this).attr('id'));
+                });
+            });
+            
 
-@csrf
-        <div class="opcion">
-            <div class="etiqueta">
-                <label for="cover" >Imagen: </label>
-            </div>
-            <div class="campo">
-                <input type="file" name="cover"/>
-            </div>
+            $("#inputDirector").keydown(function(){
+                $(".directorList").css("display", "none");
+            });
+            $("#inputDirector").keyup(function(){
+                var valor = $(this).val();
+                if(valor != null && valor != ''){
+                    $.get("{{ route('people.search') }}", {name: valor}, function(resp){
+                        var people = JSON.parse(resp);
+                        for(i = 0; i < people.length; i++){
+                            $("#"+people[i].id).css("display", "block");
+                        }
+                    });
+                }
+            });
+            $(".directorList").dblclick(function(){
+                alert($(this).attr('id'));
+            })
+        });
+    </script>
+@endsection
+
+@section('content')
+<div id="moviesFormLeft">
+    <form action="{{ route('movie.store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="opcion">
+        <div class="etiqueta">
+            <label for="cover" >Imagen: </label>
         </div>
-        <div class="opcion">
-            <div class="etiqueta">
-                <label for="filename" >Película: </label>
-            </div>
-            <div class="campo">
-                <input type="text" name="filename"/>
-            </div>
-            @error('filename')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+        <div class="campo">
+            <input type="file" name="cover"/>
         </div>
-        <div class="opcion">
-            <div class="etiqueta">
-                <label for="title" >Título: </label>
-            </div>
-            <div class="campo">
-                <input type="text" name="title"/>
-            </div>
+    </div>
+    <div class="opcion">
+        <div class="etiqueta">
+            <label for="filename" >Película: </label>
         </div>
-        <div class="opcion">
-            <div class="etiqueta">
-                <label for="year" >Año: </label>
-            </div>
-            <div class="campo">
-                <input type="number" name="year"/>
-            </div>
+        <div class="campo">
+            <input type="text" name="filename"/>
         </div>
-        <div class="opcion">
-            <div class="etiqueta">
-                <label for="duration" >Duración(min): </label>
-            </div>
-            <div class="campo">
-                <input type="number" name="duration"/>
-            </div>
+        @error('filename')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+    <div class="opcion">
+        <div class="etiqueta">
+            <label for="title" >Título: </label>
         </div>
-        <div class="opcion">
-            <div class="etiqueta">
-                <label for="rating" >Valoración: </label>
-            </div>
-            <div class="campo">
-                <input type="number" name="rating"/>
-            </div>
+        <div class="campo">
+            <input type="text" name="title" />
         </div>
-        <div class="opcion">
-            <div class="etiqueta">
-                <label for="external_url" >URL externa: </label>
-            </div>
-            <div class="campo">
-                <input type="text" name="external_url"/>
-            </div>
+    </div>
+    <div class="opcion">
+        <div class="etiqueta">
+            <label for="year" >Año: </label>
         </div>
-        <input type="submit" name="insertar" value="Insertar"/>
-        <input type="hidden" name="opc" value="addMovie">
-    </form>
+        <div class="campo">
+            <input type="number" name="year" />
+        </div>
+    </div>
+    <div class="opcion">
+        <div class="etiqueta">
+            <label for="duration" >Duración(min): </label>
+        </div>
+        <div class="campo">
+            <input type="number" name="duration" />
+        </div>
+    </div>
+    <div class="opcion">
+        <div class="etiqueta">
+            <label for="rating" >Valoración: </label>
+        </div>
+        <div class="campo">
+            <input type="number" name="rating" />
+        </div>
+    </div>
+    <div class="opcion">
+        <div class="etiqueta">
+            <label for="external_url" >URL externa: </label>
+        </div>
+        <div class="campo">
+            <input type="text" name="external_url" />
+        </div>
+    </div>
+    <input type="submit" name="insertar" value="Insertar"/>
+    <input type="hidden" name="opc" value="addMovie">
+</div>
+<div id="moviesFormRight">
+    <label for="cast">Cast:</label>
+    <input type="text" name="cast" id="inputCast" placeholder="Search Actor/Actress">
+    <div id="castSearchResult">
+        @foreach ($people as $one)
+            <p class="castList" id="{{ $one->id }}" style="display:none;">{{ $one->name }}</p>
+        @endforeach
+    </div>
+</div>
+<div id="moviesFormRight2">
+    <label for="director">Directors:</label>
+    <input type="text" name="director" id="inputDirector" placeholder="Search Directors">
+    <div id="directorSearchResult">
+        @foreach ($people as $one)
+            <p class="directorList" id="{{ $one->id }}" style="display:none;">{{ $one->name }}</p>
+        @endforeach
+    </div>
+</div>
+</form>
+    
+
+@endsection

@@ -70,6 +70,7 @@ img.divmovie{
 #movies {
     float: left;
     border: 1px solid blue;
+    height: auto;
 }
 
 .movie {
@@ -84,6 +85,7 @@ img.divmovie{
 .movieIndex {
     float: left;
     height: 310px;
+    /*height: auto;*/
     width: 166px;
     margin-top: 35px;
     margin-left: 40px;
@@ -407,4 +409,21 @@ div#allGenres {
 #info3 {
     float: left;
     width: 300px;
+}
+
+#moviesFormLeft{
+    float: left;
+    width: 40%;
+    border: 1px solid black;
+}
+
+#moviesFormRight{
+    float: left;
+    width: auto;
+    border: 1px solid black;
+}
+#moviesFormRight2{
+    float: left;
+    width: auto;
+    border: 1px solid black;
 }
