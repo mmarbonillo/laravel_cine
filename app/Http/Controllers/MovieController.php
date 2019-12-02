@@ -12,6 +12,10 @@ use DB;
 
 class MovieController extends Controller {
     
+    public function __construct() {
+        $this->middleware("auth")->except("index","show");
+    }
+
     public function index() {
         $moviesList = Movie::all();
         $user = Auth::user();
@@ -130,6 +134,18 @@ class MovieController extends Controller {
         $movie = Movie::find($r->movie);
         $movie->cast()->attach($r->cast);
         echo $r->cast;
+    }
+
+    public function addDirectors(Request $r){
+        $movie = Movie::find($r->movie);
+        $movie->direct()->attach($r->director);
+        echo $r->director;
+    }
+
+    public function view(){
+        $user = Auth::user();
+        $data["user"] = $user;
+        return view('movie/view', $data);
     }
 
     public function admin(){

@@ -226,7 +226,7 @@
         </div>
         <div id="edit" style="display:none;">
             <p><a class="nodecoration" href="#">Movie</a></p>
-            <p><a class="nodecoration" href="#">People</a></p>
+            <p><a class="nodecoration" href="{{ route('people.index') }}">People</a></p>
             <p><a id="editGenre" class="nodecoration" style="cursor: pointer;">Genre</a></p>
         </div>
         <div id="delete" style="display:none;">

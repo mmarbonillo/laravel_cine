@@ -82,14 +82,19 @@
                 }else{
                     $(".directorList").css("display", "none");
                 }
-                $("p.directorList").dblclick(function(){
-                    var idCast = ($(this).attr('id')).substring(1);
+                $(".directorList").click(function(){
+                    var idDirector = ($(this).attr('id')).substring(1);
+                    var name = ($(this).text()).substring(1);
                     var idMovie = $("#movieId").val();
-                    //$.get("{{ route('movie.addCast') }}", {movie: idMovie, cast: idCast}, function(resp){
-
+                    $.get("{{ route('movie.addDirectors') }}", {movie: idMovie, director: idDirector}, function(resp){
+                        var cadena = "<a class='indentp' href='{{ url('people/showw') }}"+"/"+idDirector+"'>"+ name +"</a>";
+                        $("#info3").append(cadena);
+                        $("#d"+resp).remove();
                     });
+
                 });
             });
+        });
 
        
        
@@ -110,7 +115,7 @@
         <input type="file" name="cover" value="{{ $movie->cover }}" style="display:{{$displayi ?? 'none'}}" style="color: transparent;">
         @auth
             <input type='button' name='editt' class='editButton' value='EDIT' onclick="window.location.href='{{ route('movie.edit', ['id' => $movie->id]) }}'" style='display:{{$displayp ?? 'none'}}'>
-            <input type='button' name='deletee' class='deleteButton' value='DELETE' style='display:{{$displayp ?? 'none'}}'>
+            <input type='button' name='deletee' class='deleteButton' value='DELETE' onclick="window.location.href='{{ route('movie.destroy', ['id' => $movie->id]) }}'" style='display:{{$displayp ?? 'none'}}'>
         @endauth
         
 </div>
@@ -203,7 +208,7 @@
                     @endphp
                 @endwhile
                     @if (!$existe)
-                        <p class="directorList" id="a{{ $one->id }}" style="display:none;">+ {{ $one->name }}</p>
+                        <p class="directorList" id="d{{ $one->id }}" style="display:none;">+ {{ $one->name }}</p>
                     @endif
             @endforeach
         </div>
@@ -212,11 +217,8 @@
         @endforeach
     </div>
     
-    @guest
-        <input type='button' name='viewMovie' class='viewMovie' value='VIEW' style='display:{{$displayp ?? 'none'}}'>
-    @endguest
-
-    
+        <input type='button' name='viewMovie' class='viewMovie' value='VIEW' style='display:{{$displayp ?? 'none'}}'
+        onclick="window.location.href='{{route('movie.view')}}'">
     
     <br style='display:{{$displayi ?? 'none'}}'>
     <br>

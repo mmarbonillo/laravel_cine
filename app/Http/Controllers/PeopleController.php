@@ -12,8 +12,16 @@ use DB;
 
 class PeopleController extends Controller {
 
-    public function __construct(){
-        $this->middleware("auth")->except("show");
+    public function __construct() {
+        $this->middleware("auth");
+    }
+
+    public function index(){
+        $peopleList = People::all();
+        $data["peopleList"] = $peopleList;
+        $user = Auth::user();
+        $data["user"] = $user;
+        return view("people/home", $data);
     }
     
     public function show($id){
@@ -32,13 +40,41 @@ class PeopleController extends Controller {
         return view('movie/index', $data);
     }
 
+    public function edit($id){
+        $people = People::find($id);
+        $data["people"] = $people;
+        $user = Auth::user();
+        $data["user"] = $user;
+        return view("people/form", $data);
+    }
+
     public function create(){
         $user = Auth::user();
         $data['user'] = $user;
-        $people = People::all();
-        $data["people"] = $people;
         //dd($people);
-        return view('movie/form', $data);
+        return view('people/form', $data);
+    }
+
+    public function new(Request $r){
+        $people->name = $r->get("name");
+        $people->external_url = $r->get("external_url");
+        $people->photo = "photo";
+        $people->save();
+        return redirect()->action('PeopleController@index');
+    }
+
+    public function store(Request $r){
+            $people = People::find($r->id);
+            $people->name = $r->get("name");
+            $people->external_url = $r->get("external_url");
+            $people->save();
+        return redirect()->action('PeopleController@index');
+    }
+
+    public function destroy($id){
+        $people = People::find($id);
+        $people->delete();
+        return redirect()->action('PeopleController@index');
     }
 
     public function search(Request $r){
