@@ -19,7 +19,7 @@ class GenreController extends Controller
         $movies = Genre::find($genero[0]->id)->movies;
         $data['moviesList'] = $movies;
         $data["user"] = Auth::user();
-        return view('genre/moviesfromgenre', $data);
+        return view('movie/index', $data);
     }
 
     public function create(){

@@ -414,7 +414,6 @@ div#allGenres {
 #moviesFormLeft{
     float: left;
     width: 40%;
-    border: 1px solid black;
 }
 
 #moviesFormRight{

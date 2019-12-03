@@ -31,7 +31,7 @@ class UserController extends Controller {
         return view('user/formUser');
     }
     
-    public function create(Request $r) {
+    public function create(ValidateCreateUsersForm $r) {
         $user = new myUser($r->except(['confirmPassword', '_token']));
         $user->save();
         echo $user->id;

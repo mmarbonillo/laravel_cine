@@ -115,24 +115,6 @@
     <input type="submit" name="insertar" value="Insertar"/>
     <input type="hidden" name="opc" value="addMovie">
 </div>
-<div id="moviesFormRight">
-    <label for="cast">Cast:</label>
-    <input type="text" name="cast" id="inputCast" placeholder="Search Actor/Actress">
-    <div id="castSearchResult">
-        @foreach ($people as $one)
-            <p class="castList" id="{{ $one->id }}" style="display:none;">{{ $one->name }}</p>
-        @endforeach
-    </div>
-</div>
-<div id="moviesFormRight2">
-    <label for="director">Directors:</label>
-    <input type="text" name="director" id="inputDirector" placeholder="Search Directors">
-    <div id="directorSearchResult">
-        @foreach ($people as $one)
-            <p class="directorList" id="{{ $one->id }}" style="display:none;">{{ $one->name }}</p>
-        @endforeach
-    </div>
-</div>
 </form>
     
 

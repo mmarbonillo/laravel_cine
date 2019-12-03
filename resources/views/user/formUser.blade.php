@@ -7,6 +7,9 @@
 
 
 @csrf
+@foreach ($errors->all() as $error)
+ <li>{{ $error }}</li>
+ @endforeach
     <div class="opcion">
         <div class="etiqueta">
             <label for="username" >Usuario: </label>
@@ -36,7 +39,7 @@
             <label for="password" >Contraseña: </label>
         </div>
         <div class="campo">
-            <input type="text" name="password" value=""/>
+            <input type="password" name="password" value=""/>
             <input type="hidden" name="oldpassword" value="{{$user->password?? ''}}">
         </div>
     </div>
